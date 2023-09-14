@@ -1,0 +1,13 @@
+{
+    "name": "gestor-de-contrase-as-uleam",
+    "version": "1.0.0",
+    "description": "Gestor de contraseñas en consola",
+    "main": "index.js",
+    "scripts": {},
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "typescript": "^5.2.2"
+    }
+}
