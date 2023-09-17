@@ -1,19 +1,25 @@
-import { NumericLiteral } from "typescript";
+import { Codificador } from "./codificador";
 import { DatosClave } from "./datos_clave";
 
-export class Clave{
+export class Clave {
 
-    private id:number;
-
+    private id: number;
     private datos: DatosClave;
-    
+    private codificador: Codificador;
     public encriptada: boolean;
 
-    public set esValida():boolean {
-
+    constructor(datos: DatosClave) {
+        this.id = 0;
+        this.datos = datos;
+        this.codificador = new Codificador(this.datos.obtenerClave());
+        this.encriptada = false;
     }
 
-    public get obtenerDatos(): DatosClave {
+    public esValida(): boolean {
+        return false;
+    }
 
+    public obtenerDatos(): DatosClave {
+        return this.datos;
     }
 }

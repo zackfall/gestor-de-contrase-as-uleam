@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "description": "Gestor de contraseñas en consola",
     "main": "index.js",
-    "scripts": {},
+    "scripts": {
+        "start": "./node_modules/.bin/tsc --outDir ./dist/ && node ./dist/src/index.js"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",

@@ -1,3 +1,4 @@
+import { Clave } from "./clave";
 import { DatosClave } from "./datos_clave";
 
 export class Almacenamiento {
@@ -19,7 +20,9 @@ export class Almacenamiento {
         return this.claves;
     }
 
-    public obtenerClavesPorId(id: number): Clave { }
+    public obtenerClavesPorId(id: number): Clave {
+        return this.claves[0];
+    }
 
     public eliminarClave(id: number) { }
 
