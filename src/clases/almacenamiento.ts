@@ -13,26 +13,19 @@ export class Almacenamiento {
         console.log("Hola")
     }
 
-    public actualizarClave(id: number, datos: DatosClave) {
-
-    }
+    public actualizarClave(id: number, datos: DatosClave) { }
 
     public obtenerClaves(): Clave[] {
-        return []
+        return this.claves;
     }
 
-    public obtenerClavesPorId(id: number): Clave {
-    }
+    public obtenerClavesPorId(id: number): Clave { }
 
-    public eliminarClave(id: number) {
-
-    }
+    public eliminarClave(id: number) { }
 
     public obtenerDireccion(): string {
         return this.direccionDB;
     }
 
-    public cambiarDireccion(nuevaDireccion: string) {
-
-    }
+    public cambiarDireccion(nuevaDireccion: string) { }
 }
