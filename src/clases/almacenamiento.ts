@@ -2,9 +2,11 @@ import { DatosClave } from "./datos_clave";
 
 export class Almacenamiento {
     private direccionDB: string;
+    private claves: Clave[];
 
     constructor() {
         this.direccionDB = "../../almacenamiento.csv"
+        this.claves = [];
     }
 
     public guardarClave(clave: Clave) {
@@ -15,7 +17,7 @@ export class Almacenamiento {
 
     }
 
-    public get obtenerClaves(): Clave[] {
+    public obtenerClaves(): Clave[] {
         return []
     }
 
@@ -26,11 +28,11 @@ export class Almacenamiento {
 
     }
 
-    public get obtenerDireccion(): string {
+    public obtenerDireccion(): string {
         return this.direccionDB;
     }
 
-    public set cambiarDireccion(nuevaDireccion: string) {
+    public cambiarDireccion(nuevaDireccion: string) {
 
     }
 }
