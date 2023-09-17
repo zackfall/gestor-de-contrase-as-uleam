@@ -1,34 +1,31 @@
 import { DatosClave } from "./datos_clave";
 
-export class Almacenamiento{
+export class Almacenamiento {
+    private direccionDB: string;
+    private claves: Clave[];
 
-    private direccionDB:string="";
-
-    public function guardarClave(clave:Clave) {
-        
+    constructor() {
+        this.direccionDB = "../../almacenamiento.csv"
+        this.claves = [];
     }
 
-    public function set actualizarClave(id:number, datos:DatosClave) {
-        
+    public guardarClave(clave: Clave) {
+        console.log("Hola")
     }
 
-    public function get obtenerClaves(): Clave[] {
-        
+    public actualizarClave(id: number, datos: DatosClave) { }
+
+    public obtenerClaves(): Clave[] {
+        return this.claves;
     }
 
-    public function get obtenerClavesPorId(id:number):Clave {
-        
+    public obtenerClavesPorId(id: number): Clave { }
+
+    public eliminarClave(id: number) { }
+
+    public obtenerDireccion(): string {
+        return this.direccionDB;
     }
 
-    public function eliminarClave(id:number) {
-        
-    }
-
-    public function get obtenerDireccion() {
-        
-    }
-
-    public function set cambiarDireccion(nuevaDireccion:string) {
-        
-    }
+    public cambiarDireccion(nuevaDireccion: string) { }
 }
