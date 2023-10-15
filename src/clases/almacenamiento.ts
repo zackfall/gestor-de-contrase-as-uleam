@@ -22,9 +22,9 @@ export class Almacenamiento {
     });
     let clave = this.claves[indice];
 
-    // consiguiendo el indice de la clave,
+    // consiguiendo el índice de la clave,
 
-    //uso la funcion find para compoarar si lo que tengo en las llaves con respecto a lo que estoy buscando
+    //uso la función find para comparar si lo que tengo en las llaves con respecto a lo que estoy buscando
     //en este caso username y si lo encuentra lo retorna
     if (clave === undefined) {
       throw new Error("!No se encontro la clave!");
