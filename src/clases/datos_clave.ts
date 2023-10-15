@@ -38,4 +38,11 @@ export abstract class DatosClave {
   obtenerMinuscula(): boolean { return this.requerirMinuscula }
   obtenerNumero(): boolean { return this.requerirNumero }
   obtenerCaracterEspecial(): boolean { return this.requerirCaracterEspecial }
+  cambiarDatosClave(datos_clave:DatosClave) {
+    this.cambiarLoginLink(datos_clave.obtenerLoginLink());
+    this.cambiarMayuscula(datos_clave.obtenerMayuscula());
+    this.cambiarMinuscula(datos_clave.obtenerMinuscula());
+    this.cambiarNumero(datos_clave.obtenerNumero());
+    this.cambiarCaracterEspecial(datos_clave.obtenerCaracterEspecial());
+  }
 }
