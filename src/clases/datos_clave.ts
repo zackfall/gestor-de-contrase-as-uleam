@@ -1,3 +1,4 @@
+
 export abstract class DatosClave {
   longitudMinima: number;
   longitud: number;
@@ -38,11 +39,35 @@ export abstract class DatosClave {
   obtenerMinuscula(): boolean { return this.requerirMinuscula }
   obtenerNumero(): boolean { return this.requerirNumero }
   obtenerCaracterEspecial(): boolean { return this.requerirCaracterEspecial }
-  cambiarDatosClave(datos_clave:DatosClave) {
-    this.cambiarLoginLink(datos_clave.obtenerLoginLink());
-    this.cambiarMayuscula(datos_clave.obtenerMayuscula());
-    this.cambiarMinuscula(datos_clave.obtenerMinuscula());
-    this.cambiarNumero(datos_clave.obtenerNumero());
-    this.cambiarCaracterEspecial(datos_clave.obtenerCaracterEspecial());
+
+  cambiarDatosClave(datos_clave: IDatosClave) {
+    this.longitud = datos_clave.longitud;
+    this.cambiarLoginLink(datos_clave.loginLink);
+    this.cambiarMayuscula(datos_clave.requerirMayuscula);
+    this.cambiarMinuscula(datos_clave.requerirMinuscula);
+    this.cambiarNumero(datos_clave.requerirNumero);
+    this.cambiarCaracterEspecial(datos_clave.requerirCaracterEspecial);
   }
+
+  obtenerDatosClave(): IDatosClave {
+    return {
+      longitudMinima: this.longitudMinima,
+      longitud: this.longitud,
+      loginLink: this.loginLink,
+      requerirMayuscula: this.requerirMayuscula,
+      requerirMinuscula: this.requerirMinuscula,
+      requerirNumero: this.requerirNumero,
+      requerirCaracterEspecial: this.requerirCaracterEspecial,
+    }
+  }
+}
+
+interface IDatosClave {
+  longitudMinima: number;
+  longitud: number;
+  loginLink: string;
+  requerirMayuscula: boolean;
+  requerirMinuscula: boolean;
+  requerirNumero: boolean;
+  requerirCaracterEspecial: boolean;
 }
