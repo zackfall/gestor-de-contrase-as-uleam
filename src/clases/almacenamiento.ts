@@ -11,16 +11,19 @@ export class Almacenamiento {
     this.claves = [];
   }
 
-  public guardarClave(clave: Clave) {
-    this.claves.push(clave);
+  public guardarClave() {
     let infoClaves = JSON.stringify(this.claves, null, 2);
     fs.writeFileSync(this.direccionDB, infoClaves);
   }
 
   public actualizarClave(username: string, claveNueva: Clave) {
-    let clave = this.claves.find((clave) => {
-      clave.perfil.obtenerUsername() === username;
+    let indice = this.claves.findIndex((clave) => {
+      return clave.perfil.obtenerUsername() === username;
     });
+    let clave = this.claves[indice];
+
+    // consiguiendo el indice de la clave,
+
     //uso la funcion find para compoarar si lo que tengo en las llaves con respecto a lo que estoy buscando
     //en este caso username y si lo encuentra lo retorna
     if (clave === undefined) {
@@ -29,19 +32,32 @@ export class Almacenamiento {
     clave.perfil = claveNueva.perfil;
     clave.encriptada = claveNueva.encriptada;
     clave.categoria = claveNueva.categoria;
-    clave.cambiarDatosClave(claveNueva.obtenerDatosClave())
+    clave.cambiarDatosClave(claveNueva.obtenerDatosClave());
+
+    this.claves.splice(indice, 1, clave);
+    this.guardarClave();
   }
 
   public obtenerClaves(): Clave[] {
     return this.claves;
   }
 
-  public obtenerClavesPorId(id: number): Clave {
-    return this.claves[id - 1];
+  public obtenerClavesPorUserName(username: string): Clave {
+    let clave = this.claves.find((clave) => {
+      return clave.perfil.obtenerUsername() === username;
+    });
+    if (clave === undefined) {
+      throw new Error("!No se encontro la clave!");
+    }
+    return clave
   }
 
-  public eliminarClave(id: number) {
-    this.claves.splice(id - 1, 1);
+  public eliminarClave(username: string) {
+    this.claves = this.claves.filter(clave => clave.perfil.obtenerUsername() !== username);
+  }
+
+  public agregarClave(clave: Clave){
+    this.claves.push(clave);
   }
 
   public obtenerDireccion(): string {
