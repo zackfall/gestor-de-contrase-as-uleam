@@ -12,7 +12,7 @@ export class Clave extends DatosClave {
   constructor(loginLink: string, perfil: Perfil, categoria: TipoDeCategoria) {
     super(loginLink);
     this._perfil = perfil;
-    this._codificador = new Codificador(this._perfil.obtenercontrasenia())
+    this._codificador = new Codificador(this._perfil.obtenerContrasenia())
     this.encriptada = false;
     this.categoria = categoria;
   }
