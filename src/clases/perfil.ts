@@ -14,4 +14,12 @@ export class Perfil {
   cambiarUsername(username: string) {
     this.username = username;
   }
+
+  obtenerContrasenia(): string {
+    return this.contrasenia;
+  }
+
+  cambiarContrasenia(contrasenia: string) {
+    this.contrasenia = contrasenia;
+  }
 }
