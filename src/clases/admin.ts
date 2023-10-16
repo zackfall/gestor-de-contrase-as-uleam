@@ -29,5 +29,5 @@ export class Admin {
         this.activo = activo;
     }
 
-    private compararClaveUsuario(clave: String): boolean { return false; }
+    private compararClaveUsuario(clave: String): boolean { return clave === undefined }
 }
