@@ -10,9 +10,11 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "prompt-sync": "^4.2.0",
         "typescript": "^5.2.2"
     },
     "devDependencies": {
-        "@types/node": "^20.8.6"
+        "@types/node": "^20.8.6",
+        "@types/prompt-sync": "^4.2.1"
     }
 }

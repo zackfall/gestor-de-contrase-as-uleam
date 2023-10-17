@@ -1,19 +1,31 @@
+import { Admin } from "./admin";
 import { Clave } from "./clave";
-import { DatosClave } from "./datos_clave";
 import * as fs from "fs";
 
+// Esta clase se encarga de la capa de datos, aquí se modifica un archivo y se obtiene información de ese mismo.
 export class Almacenamiento {
   private direccionDB: string;
   private claves: Clave[];
+  public estaActiva: boolean = false;
 
   constructor() {
     this.direccionDB = "almacenamiento.json";
-    this.claves = [];
+    if (!fs.existsSync(this.direccionDB)) {
+      fs.writeFileSync(this.direccionDB, "[]");
+    }
+    let claveArchivo = fs.readFileSync(this.direccionDB, "utf-8");
+    this.claves = JSON.parse(claveArchivo);
   }
 
-  public guardarClave() {
+  public guardarClaves() {
     let infoClaves = JSON.stringify(this.claves, null, 2);
     fs.writeFileSync(this.direccionDB, infoClaves);
+  }
+
+  public activarDB(contrasenia: string, admin: Admin) {
+    if (admin.compararClaveUsuario(contrasenia)) {
+      this.estaActiva = true;
+    }
   }
 
   public actualizarClave(username: string, claveNueva: Clave) {
@@ -31,11 +43,10 @@ export class Almacenamiento {
     }
     clave.perfil = claveNueva.perfil;
     clave.encriptada = claveNueva.encriptada;
-    clave.categoria = claveNueva.categoria;
     clave.cambiarDatosClave(claveNueva.obtenerDatosClave());
 
     this.claves.splice(indice, 1, clave);
-    this.guardarClave();
+    this.guardarClaves();
   }
 
   public obtenerClaves(): Clave[] {
@@ -54,10 +65,12 @@ export class Almacenamiento {
 
   public eliminarClave(username: string) {
     this.claves = this.claves.filter(clave => clave.perfil.obtenerUsername() !== username);
+    this.guardarClaves();
   }
 
-  public agregarClave(clave: Clave){
+  public agregarClave(clave: Clave) {
     this.claves.push(clave);
+    this.guardarClaves();
   }
 
   public obtenerDireccion(): string {
