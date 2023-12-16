@@ -71,6 +71,7 @@ export class Almacenamiento {
   public agregarClave(clave: Clave) {
     this.claves.push(clave);
     this.guardarClaves();
+    console.log("Clave agregada");
   }
 
   public obtenerDireccion(): string {
