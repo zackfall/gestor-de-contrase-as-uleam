@@ -1,37 +1,19 @@
+import fs from "fs";
 import { Admin } from "./admin"
 import { Almacenamiento } from "./almacenamiento"
 
+// Clase que se encarga de la capa de presentación, nos permite crear el administrador y la base de datos.
 export class GestorDeContrasenias {
-    private admin: Admin |null;
-    public version: string;
-    public db: Almacenamiento | null;
+  private admin: Admin | null;
+  public version: string;
+  public db: Almacenamiento | null;
 
-    constructor() {
-        this.version = "1.0.0";
-        this.admin = null;
-        this.db = null;
-              
-    }
+  constructor() {
+    this.version = "1.0.0";
+    this.admin = null;
+    this.db = null;
+  }
 
-<<<<<<< Updated upstream
-    crearAdmin(nombre: string, clave: string): void {
-        this.admin = new Admin(nombre, clave);
-        console.log('Administrador creado:');
-     }
-    crearDB(): void { 
-        this.db = new Almacenamiento();
-        console.log();
-        }
-    
-    abrirDB(): void {
-        if (this.db) {
-            console.log('dato');
-          } else {
-            console.log('dato');
-        }
-     }
-}
-=======
   crearAdmin(nombre: string, clave: string): void {
     if (this.admin !== null) {
       throw new Error("Ya existe un administrador");
@@ -63,4 +45,4 @@ export class GestorDeContrasenias {
     this.db.activarDB(contrasenia, this.admin);
   }
 }
->>>>>>> Stashed changes
+

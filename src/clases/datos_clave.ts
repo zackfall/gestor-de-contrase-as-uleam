@@ -1,3 +1,7 @@
+/*
+* Esta clase es abstracta porque son los datos de las claves, los ponemos aparte para tener una mejor organización en nuestro código.
+* Se usa polimorfismo porque nos evita poner muchos metodos en la misma clase.
+*/
 export abstract class DatosClave {
   longitudMinima: number;
   longitud: number;
@@ -38,4 +42,35 @@ export abstract class DatosClave {
   obtenerMinuscula(): boolean { return this.requerirMinuscula }
   obtenerNumero(): boolean { return this.requerirNumero }
   obtenerCaracterEspecial(): boolean { return this.requerirCaracterEspecial }
+
+  cambiarDatosClave(datos_clave: IDatosClave) {
+    this.longitud = datos_clave.longitud;
+    this.cambiarLoginLink(datos_clave.loginLink);
+    this.cambiarMayuscula(datos_clave.requerirMayuscula);
+    this.cambiarMinuscula(datos_clave.requerirMinuscula);
+    this.cambiarNumero(datos_clave.requerirNumero);
+    this.cambiarCaracterEspecial(datos_clave.requerirCaracterEspecial);
+  }
+
+  obtenerDatosClave(): IDatosClave {
+    return {
+      longitudMinima: this.longitudMinima,
+      longitud: this.longitud,
+      loginLink: this.loginLink,
+      requerirMayuscula: this.requerirMayuscula,
+      requerirMinuscula: this.requerirMinuscula,
+      requerirNumero: this.requerirNumero,
+      requerirCaracterEspecial: this.requerirCaracterEspecial,
+    }
+  }
+}
+
+interface IDatosClave {
+  longitudMinima: number;
+  longitud: number;
+  loginLink: string;
+  requerirMayuscula: boolean;
+  requerirMinuscula: boolean;
+  requerirNumero: boolean;
+  requerirCaracterEspecial: boolean;
 }

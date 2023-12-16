@@ -1,15 +1,21 @@
 {
-    "name": "gestor-de-contrase-as-uleam",
-    "version": "1.0.0",
-    "description": "Gestor de contraseñas en consola",
-    "main": "index.js",
-    "scripts": {
-        "start": "./node_modules/.bin/tsc --outDir ./dist/ && node ./dist/src/index.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "typescript": "^5.2.2"
-    }
+  "name": "gestor-de-contrase-as-uleam",
+  "version": "1.0.0",
+  "description": "Gestor de contraseñas en consola",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.4",
+    "@types/prompt-sync": "^4.2.3",
+    "ts-node-dev": "^2.0.0"
+  }
 }
