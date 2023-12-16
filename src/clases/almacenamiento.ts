@@ -31,12 +31,6 @@ export class Almacenamiento {
     }
   }
 
-  public activarDB(contrasenia: string, admin: Admin) {
-    if (admin.compararClaveUsuario(contrasenia)) {
-      this.estaActiva = true;
-    }
-  }
-
   public actualizarClave(username: string, claveNueva: Clave) {
     let indice = this.claves.claves.findIndex((clave) => {
       return clave.perfil.obtenerUsername() === username;
@@ -97,5 +91,5 @@ export class Almacenamiento {
 
   public cambiarDireccion(nuevaDireccion: string) {
     this.direccionDB = nuevaDireccion;
-  }
+  }
 }
