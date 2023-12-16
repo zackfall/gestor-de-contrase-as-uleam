@@ -1,4 +1,7 @@
-
+/*
+* Esta clase es abstracta porque son los datos de las claves, los ponemos aparte para tener una mejor organización en nuestro código.
+* Se usa polimorfismo porque nos evita poner muchos metodos en la misma clase.
+*/
 export abstract class DatosClave {
   longitudMinima: number;
   longitud: number;
