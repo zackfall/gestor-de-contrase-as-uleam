@@ -1,11 +1,11 @@
 export class Admin {
     private nombre: String;
-    private claveUsuario: String;
+    private ClaveUsuario: String;
     private activo: boolean;
 
-    constructor(nombre: String, claveUsuario: String) {
+    constructor(nombre: String, ClaveUsuario: String) {
         this.nombre = nombre;
-        this.claveUsuario = claveUsuario;
+        this.ClaveUsuario = ClaveUsuario;
         this.activo = true;
     }
 
@@ -22,12 +22,12 @@ export class Admin {
     }
 
     public setClaveUsuario(claveUsuario: String): void {
-        this.claveUsuario = claveUsuario;
+        this.ClaveUsuario = claveUsuario;
     }
 
     public setActivo(activo: boolean): void {
         this.activo = activo;
     }
 
-    private compararClaveUsuario(clave: String): boolean { return clave === undefined }
+    public compararClaveUsuario(clave: String): boolean { return clave === undefined }
 }
