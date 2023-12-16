@@ -7,7 +7,6 @@ export abstract class DatosClave {
   longitud: number;
   private loginLink: string;
   private requerirMayuscula: boolean;
-  private requerirMinuscula: boolean;
   private requerirNumero: boolean;
   private requerirCaracterEspecial: boolean;
 
@@ -16,7 +15,6 @@ export abstract class DatosClave {
     this.longitud = 0;
     this.loginLink = loginLink;
     this.requerirMayuscula = false;
-    this.requerirMinuscula = false;
     this.requerirNumero = false;
     this.requerirCaracterEspecial = false;
   }
@@ -27,9 +25,6 @@ export abstract class DatosClave {
   cambiarMayuscula(activo: boolean) {
     this.requerirMayuscula = activo;
   }
-  cambiarMinuscula(activo: boolean) {
-    this.requerirMinuscula = activo;
-  }
   cambiarNumero(activo: boolean) {
     this.requerirNumero = activo;
   }
@@ -39,7 +34,6 @@ export abstract class DatosClave {
 
   obtenerLoginLink(): string { return this.loginLink }
   obtenerMayuscula(): boolean { return this.requerirMayuscula }
-  obtenerMinuscula(): boolean { return this.requerirMinuscula }
   obtenerNumero(): boolean { return this.requerirNumero }
   obtenerCaracterEspecial(): boolean { return this.requerirCaracterEspecial }
 
@@ -47,7 +41,6 @@ export abstract class DatosClave {
     this.longitud = datos_clave.longitud;
     this.cambiarLoginLink(datos_clave.loginLink);
     this.cambiarMayuscula(datos_clave.requerirMayuscula);
-    this.cambiarMinuscula(datos_clave.requerirMinuscula);
     this.cambiarNumero(datos_clave.requerirNumero);
     this.cambiarCaracterEspecial(datos_clave.requerirCaracterEspecial);
   }
@@ -58,7 +51,6 @@ export abstract class DatosClave {
       longitud: this.longitud,
       loginLink: this.loginLink,
       requerirMayuscula: this.requerirMayuscula,
-      requerirMinuscula: this.requerirMinuscula,
       requerirNumero: this.requerirNumero,
       requerirCaracterEspecial: this.requerirCaracterEspecial,
     }
@@ -70,7 +62,6 @@ interface IDatosClave {
   longitud: number;
   loginLink: string;
   requerirMayuscula: boolean;
-  requerirMinuscula: boolean;
   requerirNumero: boolean;
   requerirCaracterEspecial: boolean;
 }

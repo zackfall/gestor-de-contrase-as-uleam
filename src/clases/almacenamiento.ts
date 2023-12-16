@@ -2,24 +2,27 @@ import { Admin } from "./admin";
 import { Clave } from "./clave";
 import * as fs from "fs";
 
+type Claves = { admin: Admin; claves: Clave[] };
+
 // Esta clase se encarga de la capa de datos, aquí se modifica un archivo y se obtiene información de ese mismo.
 export class Almacenamiento {
   private direccionDB: string;
-  private claves: Clave[];
+  private claves: Claves;
   public estaActiva: boolean = false;
 
-  constructor() {
+  constructor(admin: Admin) {
     this.direccionDB = "almacenamiento.json";
     if (!fs.existsSync(this.direccionDB)) {
-      fs.writeFileSync(this.direccionDB, "[]");
+      fs.writeFileSync(this.direccionDB, "{}");
     }
     let claveArchivo = fs.readFileSync(this.direccionDB, "utf-8");
     this.claves = JSON.parse(claveArchivo);
+    this.claves.admin = admin
   }
 
   public guardarClaves() {
     let infoClaves = JSON.stringify(this.claves, null, 2);
-    fs.writeFileSync(this.direccionDB, infoClaves);
+    fs.writeFileSync(this.direccionDB, `${infoClaves}`);
   }
 
   public activarDB(contrasenia: string, admin: Admin) {
@@ -29,10 +32,10 @@ export class Almacenamiento {
   }
 
   public actualizarClave(username: string, claveNueva: Clave) {
-    let indice = this.claves.findIndex((clave) => {
+    let indice = this.claves.claves.findIndex((clave) => {
       return clave.perfil.obtenerUsername() === username;
     });
-    let clave = this.claves[indice];
+    let clave = this.claves.claves[indice];
 
     // consiguiendo el índice de la clave,
 
@@ -45,16 +48,16 @@ export class Almacenamiento {
     clave.encriptada = claveNueva.encriptada;
     clave.cambiarDatosClave(claveNueva.obtenerDatosClave());
 
-    this.claves.splice(indice, 1, clave);
+    this.claves.claves.splice(indice, 1, clave);
     this.guardarClaves();
   }
 
   public obtenerClaves(): Clave[] {
-    return this.claves;
+    return this.claves.claves;
   }
 
   public obtenerClavesPorUserName(username: string): Clave {
-    let clave = this.claves.find((clave) => {
+    let clave = this.claves.claves.find((clave) => {
       return clave.perfil.obtenerUsername() === username;
     });
     if (clave === undefined) {
@@ -64,14 +67,21 @@ export class Almacenamiento {
   }
 
   public eliminarClave(username: string) {
-    this.claves = this.claves.filter(clave => clave.perfil.obtenerUsername() !== username);
+    this.claves.claves = this.claves.claves.filter(clave => clave.perfil.obtenerUsername() !== username);
     this.guardarClaves();
   }
 
   public agregarClave(clave: Clave) {
-    this.claves.push(clave);
-    this.guardarClaves();
-    console.log("Clave agregada");
+    if (this.claves.claves === undefined) {
+      this.claves.claves = [];
+      this.claves.claves.push(clave);
+      this.guardarClaves();
+      console.log("Clave agregada");
+    } else {
+      this.claves.claves.push(clave)
+      this.guardarClaves();
+      console.log("Clave agregada");
+    }
   }
 
   public obtenerDireccion(): string {
