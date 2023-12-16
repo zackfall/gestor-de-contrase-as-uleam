@@ -4,6 +4,7 @@ import { Almacenamiento } from "./almacenamiento"
 
 // Clase que se encarga de la capa de presentación, nos permite crear el administrador y la base de datos.
 export class GestorDeContrasenias {
+  
   private admin: Admin | null;
   public version: string;
   public db: Almacenamiento | null;
