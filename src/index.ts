@@ -6,7 +6,9 @@ import prompSync from "prompt-sync";
 let prompt = prompSync();
 let gestor_de_contrasenias = new GestorDeContrasenias();
 
-console.log(`La versión del Gestor de Contraseñas es: ${gestor_de_contrasenias.version}`);
+console.log(`Gestor de Contraseñas versión ${gestor_de_contrasenias.version}`);
+
+console.log("\nCree el administrador");
 
 const nombreAdmin = prompt("Nombre de administrador: ");
 const contraseniaAdmin = prompt("Contraseña de administrador: ");
@@ -21,8 +23,10 @@ if (gestor_de_contrasenias.db === null) {
 gestor_de_contrasenias.abrirDB(nombreAdmin);
 gestor_de_contrasenias.db.guardarClaves()
 
-const nombrePerfil = prompt("Nombre de usuario: ");
-const contraseniaPerfil = prompt("Contraseña de usuario: ");
+console.log("\nCree un perfil para guardar");
+
+const nombrePerfil = prompt("Nombre de perfil: ");
+const contraseniaPerfil = prompt("Contraseña de perfil: ");
 
 const clave1 = new Clave("gestorContrasenia.com", new Perfil(nombrePerfil, contraseniaPerfil));
 gestor_de_contrasenias.db.agregarClave(clave1)
