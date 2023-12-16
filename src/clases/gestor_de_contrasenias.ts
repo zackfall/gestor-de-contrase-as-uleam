@@ -13,6 +13,7 @@ export class GestorDeContrasenias {
               
     }
 
+<<<<<<< Updated upstream
     crearAdmin(nombre: string, clave: string): void {
         this.admin = new Admin(nombre, clave);
         console.log('Administrador creado:');
@@ -30,3 +31,36 @@ export class GestorDeContrasenias {
         }
      }
 }
+=======
+  crearAdmin(nombre: string, clave: string): void {
+    if (this.admin !== null) {
+      throw new Error("Ya existe un administrador");
+    }
+    this.admin = new Admin(nombre, clave);
+    console.log('Administrador creado');
+  }
+  crearDB(): void {
+    if (this.db !== null) {
+      throw new Error("Ya existe una base de datos");
+    }
+    if (this.admin === null) {
+      throw new Error("No se ha creado el administrador");
+    }
+
+    this.db = new Almacenamiento(this.admin);
+  }
+
+  abrirDB(contrasenia: string): void {
+    if (this.db === null) {
+      throw new Error("No se ha creado la base de datos");
+    }
+    if (this.admin === null) {
+      throw new Error("No se ha creado el administrador");
+    }
+    if (!fs.existsSync(this.db.obtenerDireccion())) {
+      throw new Error("No se encontro la base de datos");
+    }
+    this.db.activarDB(contrasenia, this.admin);
+  }
+}
+>>>>>>> Stashed changes
